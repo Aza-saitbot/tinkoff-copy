@@ -12,4 +12,4 @@ export default function App() {
 }
 
 // выходит warning, из-за @react-navigation, поэтому что бы не мешали warning игнор
-LogBox.ignoreAllLogs()
+// LogBox.ignoreAllLogs()

@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {Text, TouchableHighlight} from 'react-native';
+import {Text, TouchableHighlight, View} from 'react-native';
 import tw from 'tailwind-rn'
 
 interface IButton {
@@ -18,9 +18,10 @@ const Button:FC<IButton> = ({
         <TouchableHighlight
         onPress={onPress}
         underlayColor={colors[1]}
-        style={tw(`${colors[0]} text-gray-800 rounded-xl w-full my-4 py-2`)}
+        style={tw(`${colors[0]} text-gray-800 rounded-xl
+         w-full my-4 py-3`)}
         >
-            <Text style={tw('text-center')}>{title}</Text>
+                <Text style={tw('text-center')}>{title}</Text>
         </TouchableHighlight>
     );
 };
