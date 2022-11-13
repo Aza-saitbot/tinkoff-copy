@@ -6,20 +6,25 @@ import {
     createUserWithEmailAndPassword
 } from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore'
+import { getAnalytics } from "firebase/analytics";
 
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyCa-1OrO2kZz4OMRXA6tHQAXfdIS6xEFkc",
-    authDomain: "tinkoff-387f9.firebaseapp.com",
-    projectId: "tinkoff-387f9",
-    storageBucket: "tinkoff-387f9.appspot.com",
-    messagingSenderId: "54575055335",
-    appId: "1:54575055335:web:68edd46d587389792afd42",
-    measurementId: "G-HCQL42F42L"
+    apiKey: "AIzaSyCx-0DMAkaG1l7XSowBbSqRK0BZ368Ztd8",
+    authDomain: "tinkoff-copy-d2320.firebaseapp.com",
+    projectId: "tinkoff-copy-d2320",
+    storageBucket: "tinkoff-copy-d2320.appspot.com",
+    messagingSenderId: "22419558101",
+    appId: "1:22419558101:web:bb61e270d3bb31cdf99c5c",
+    measurementId: "G-ZZZ18HBWHH"
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
-
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+console.log(' analytics', analytics)
 export const auth = getAuth()
 
 export const register = (email: string, password: string) =>

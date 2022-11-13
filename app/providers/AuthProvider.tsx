@@ -25,31 +25,32 @@ export const AuthProvider:FC<Props> = ({children}) => {
     const registerHandler = async (email: string, password: string) => {
         setIsLoading(true)
         try {
-
+            console.log('registerHandler')
             const {user} = await register(email, password)
-            await addDoc(collection(db, 'users'), {
+            console.log('REGISTER user',user)
+            const dbRef = collection(db, "users");
+            const data = {
                 _id: user.uid,
                 displayName: 'No name'
-            })
+            }
+            console.log('dbRef',dbRef)
+            console.log('data',data)
+            const docRef=await addDoc(dbRef, data)
+            console.log('SUCCESS ADDED docRef=',docRef)
 
         } catch (e) {
-            Alert.alert('Err registration', e)
+            Alert.alert('ERRRRRRRROR registration', e.message)
         } finally {
             setIsLoading(false)
         }
     }
+
     const loginHandler = async (email: string, password: string) => {
         setIsLoading(true)
         try {
-
-            const {user} = await login(email, password)
-            await addDoc(collection(db, 'users'), {
-                _id: user.uid,
-                displayName: 'No name'
-            })
-
+            await login(email, password)
         } catch (e) {
-            Alert.alert('Err login', e)
+            Alert.alert('Err login', e.message)
         } finally {
             setIsLoading(false)
         }
@@ -59,29 +60,28 @@ export const AuthProvider:FC<Props> = ({children}) => {
         try {
             await logout()
         } catch (e) {
-            Alert.alert('Err logout', e)
+            Alert.alert('Err logout', e.message)
         } finally {
             setIsLoading(false)
         }
     }
 
-    useEffect(()=>{
-        // подписываемся, следим за авторизации поль-ля
-        // каждый раз когда выходим из системы, срабатывает колбэк
-        // если есть , то возвращает user, иначе null
-       onAuthStateChanged(auth,user=>{
+    // подписываемся, следим за авторизации поль-ля
+    // каждый раз когда выходим из системы, срабатывает колбэк
+    // если есть, то возвращает user, иначе null
+    useEffect(()=> onAuthStateChanged(auth,user=>{
+        console.log('onAuthStateChanged',user)
            setUser(user || null)
            // после авторизации, произошло изменения
            // приложения что бы понимал, на каком моменте мы уже авторизовались
            setIsLoadingInitial(false)
-       })
-    },[])
+       }),[])
 
 
     const value = useMemo(() => ({
         user,
         isLoading,
-        // функции не будут пересоздаваться, если user и isLoading не изменяться
+        //для чего используем useMemo, функции не будут пересоздаваться, если user и isLoading не изменяться
         login:loginHandler,
         logout:logoutHandler,
         register:registerHandler

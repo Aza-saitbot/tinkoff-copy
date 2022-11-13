@@ -7,10 +7,6 @@ import Field from "../../ui/Field";
 import Button from "../../ui/Button";
 import {styleCenter} from '../../layout/Layout';
 
-interface IData {
-    email: string
-    password: string
-}
 
 const Auth = () => {
     const {isLoading, login, register} = useAuth()
