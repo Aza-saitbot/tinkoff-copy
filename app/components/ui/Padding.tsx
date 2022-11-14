@@ -9,7 +9,8 @@ interface IPadding {
 const Padding:FC<IPadding> = ({children,style={}}) => {
     return (
         <View style={{...tw('px-4'),...style}}>
-            {children}</View>
+            {children}
+        </View>
     );
 };
 

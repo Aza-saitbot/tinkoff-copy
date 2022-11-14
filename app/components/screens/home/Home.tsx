@@ -1,15 +1,16 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import Header from './Header';
+import Layout from "../../layout/Layout";
 
 const Home = () => {
     return (
-        <View>
+        <Layout>
             <Header/>
             <Text>
-                Home
+                Home22
             </Text>
-        </View>
+        </Layout>
     );
 };
 

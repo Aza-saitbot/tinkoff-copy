@@ -6,7 +6,7 @@ interface IAvatar {
     name?:string|null
     size?:'small'|'large'
 }
-const Avatar:FC<IAvatar> = ({name,size }) => {
+const Avatar:FC<IAvatar> = ({name,size='small' }) => {
     const isSmall=size === 'small'
 
     return (
